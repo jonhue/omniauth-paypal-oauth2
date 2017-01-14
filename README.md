@@ -44,7 +44,7 @@ Here's an example for adding the middleware to a Rails app in `config/initialize
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :paypal_oauth2, ENV["PAYPAL_CLIENT_ID"], ENV["PAYPAL_CLIENT_SECRET"]
+    provider :paypal_oauth2, ENV["PAYPAL_CLIENT_ID"], ENV["PAYPAL_CLIENT_SECRET"], :strategy_class => OmniAuth::Strategies::PayPalOauth2
 end
 ```
 
@@ -137,7 +137,8 @@ First define your application id and secret in `config/initializers/devise.rb`. 
 Configuration options can be passed as the last parameter here as key/value pairs.
 
 ```ruby
-config.omniauth :paypal_oauth2, "PAYPAL_CLIENT_ID", "PAYPAL_CLIENT_SECRET", { }
+require "omniauth-paypal-oauth2"
+config.omniauth :paypal_oauth2, "PAYPAL_CLIENT_ID", "PAYPAL_CLIENT_SECRET", :strategy_class => OmniAuth::Strategies::PayPalOauth2, { }
 ```
 
 Then add the following to 'config/routes.rb' so the callback routes are defined.
