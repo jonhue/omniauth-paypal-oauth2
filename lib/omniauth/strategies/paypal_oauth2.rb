@@ -2,7 +2,7 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class PayPal < OmniAuth::Strategies::OAuth2
+    class PayPalOauth2 < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = "email,profile"
       DEFAULT_RESPONSE_TYPE = "code"
       SANDBOX_SITE = "https://api.sandbox.paypal.com"
