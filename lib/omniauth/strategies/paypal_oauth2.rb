@@ -2,7 +2,7 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    class PayPalOauth2 < OmniAuth::Strategies::OAuth2
+    class PayPal < OmniAuth::Strategies::OAuth2
       DEFAULT_SCOPE = "email,profile"
       DEFAULT_RESPONSE_TYPE = "code"
       SANDBOX_SITE = "https://api.sandbox.paypal.com"
@@ -87,4 +87,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization '', 'PayPalOauth2'
+OmniAuth.config.add_camelization('oauth', 'OAuth')
