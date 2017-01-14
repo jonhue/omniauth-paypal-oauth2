@@ -87,4 +87,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization '', 'PayPalOauth2'
+OmniAuth.config.add_camelization('oauth', 'OAuth')
