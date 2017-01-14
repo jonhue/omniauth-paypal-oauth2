@@ -3,7 +3,7 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class PayPalOauth2 < OmniAuth::Strategies::OAuth2
-      DEFAULT_SCOPE = "openid profile"
+      DEFAULT_SCOPE = "email,profile"
       DEFAULT_RESPONSE_TYPE = "code"
       SANDBOX_SITE = "https://api.sandbox.paypal.com"
       SANDBOX_AUTHORIZE_URL = 'https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize'
@@ -87,4 +87,4 @@ module OmniAuth
   end
 end
 
-OmniAuth.config.add_camelization 'paypal', 'PayPal'
+OmniAuth.config.add_camelization '', 'PayPalOauth2'

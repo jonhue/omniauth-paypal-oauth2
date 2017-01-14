@@ -4,7 +4,7 @@ require 'omniauth/paypal_oauth2/version'
 
 Gem::Specification.new do |s|
   s.name     = 'omniauth-paypal-oauth2'
-  s.version  = '1.4.3'
+  s.version  = '1.4.4'
   s.authors  = ['Jonas Hübotter']
   s.email    = ['jonas.huebotter@gmail.com']
   s.summary  = 'A PayPal OAuth2 strategy for OmniAuth 1.x'

@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'omniauth-paypal'
+require 'omniauth-paypal-oauth2'
 
-describe OmniAuth::Strategies::PayPal do
+describe OmniAuth::Strategies::PayPalOauth2 do
   subject do
-    OmniAuth::Strategies::PayPal.new(nil, @options || {})
+    OmniAuth::Strategies::PayPalOauth2.new(nil, @options || {})
   end
 
   it_should_behave_like 'an oauth2 strategy'
@@ -43,7 +43,7 @@ describe OmniAuth::Strategies::PayPal do
 
   describe '#callback_path' do
     it "has the correct callback path" do
-      expect(subject.callback_path).to eq('/auth/paypal/callback')
+      expect(subject.callback_path).to eq('/auth/paypal_oauth2/callback')
     end
   end
 
