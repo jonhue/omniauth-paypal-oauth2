@@ -1,24 +1,24 @@
 # -*- encoding: utf-8 -*-
-$:.push File.expand_path('../lib', __FILE__)
-require 'omniauth/paypal_oauth2/version'
+require File.expand_path(File.join('..', 'lib', 'omniauth', 'paypal_oauth2', 'version'), __FILE__)
 
-Gem::Specification.new do |s|
-    s.name     = 'omniauth-paypal-oauth2'
-    s.version  = '1.4.6'
-    s.authors  = ['Jonas Hübotter']
-    s.email    = ['jonas@slooob.com']
-    s.summary  = 'A PayPal OAuth2 strategy for OmniAuth 1.x'
-    s.homepage = 'https://github.com/jonhue/omniauth-paypal-oauth2'
-    s.license  = 'MIT'
+Gem::Specification.new do |gem|
+  gem.name          = 'omniauth-paypal-oauth2'
+  gem.version       = OmniAuth::PayPalOauth2::VERSION
+  gem.license       = 'MIT'
+  gem.summary       = %q{A PayPal OAuth2 strategy for OmniAuth 1.x}
+  gem.description   = %q{A PayPal OAuth2 strategy for OmniAuth 1.x}
+  gem.authors       = ['Jonas Hübotter']
+  gem.email         = ['jonas@slooob.com']
+  gem.homepage      = 'https://github.com/jonhue/omniauth-paypal-oauth2'
 
-    s.files         = `git ls-files`.split("\n")
-    s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-    s.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
-    s.require_paths = ['lib']
+  gem.files         = `git ls-files`.split("\n")
+  gem.require_paths = ["lib"]
 
-    s.add_runtime_dependency 'omniauth-oauth2', '~> 1.4.0'
-    s.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
+  gem.required_ruby_version = '>= 2.0'
 
-    s.add_development_dependency 'rspec', '~> 2.99.0'
-    s.add_development_dependency 'rake'
+  s.add_runtime_dependency 'omniauth-oauth2', '~> 1.4.0'
+  s.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
+
+  s.add_development_dependency 'rspec', '~> 2.99.0'
+  s.add_development_dependency 'rake'
 end
