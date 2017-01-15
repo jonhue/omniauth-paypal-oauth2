@@ -16,9 +16,9 @@ Gem::Specification.new do |gem|
 
     gem.required_ruby_version = '>= 2.0'
 
-    s.add_runtime_dependency 'omniauth-oauth2', '~> 1.4.0'
-    s.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
+    gem.add_runtime_dependency 'omniauth-oauth2', '~> 1.4.0'
+    gem.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
 
-    s.add_development_dependency 'rspec', '~> 2.99.0'
-    s.add_development_dependency 'rake'
+    gem.add_development_dependency 'rspec', '~> 2.99.0'
+    gem.add_development_dependency 'rake'
 end
