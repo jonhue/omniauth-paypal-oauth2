@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    omniauth-paypal-oauth2 (1.4.2)
+    omniauth-paypal-oauth2 (1.4.4)
+      json (~> 2.0, >= 2.0.3)
       omniauth-oauth2 (~> 1.4.0)
 
 GEM
@@ -44,11 +45,11 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  json
+  json (~> 2.0, >= 2.0.3)
   omniauth-oauth2 (~> 1.4.0)
   omniauth-paypal-oauth2!
   rake
-  rspec (~> 2.14)
+  rspec (~> 2.99.0)
 
 BUNDLED WITH
    1.11.2
