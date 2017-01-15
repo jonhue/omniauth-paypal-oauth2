@@ -4,7 +4,7 @@ require 'omniauth/paypal_oauth2/version'
 
 Gem::Specification.new do |s|
     s.name     = 'omniauth-paypal-oauth2'
-    s.version  = '1.4.5'
+    s.version  = '1.4.6'
     s.authors  = ['Jonas Hübotter']
     s.email    = ['jonas@slooob.com']
     s.summary  = 'A PayPal OAuth2 strategy for OmniAuth 1.x'
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     s.require_paths = ['lib']
 
     s.add_runtime_dependency 'omniauth-oauth2', '~> 1.4.0'
-    s.add_runtime_dependency 'json', '~> 2.0', '>= 2.0.3'
+    s.add_runtime_dependency 'json', '~> 1.7', '>= 1.7.7'
 
     s.add_development_dependency 'rspec', '~> 2.99.0'
     s.add_development_dependency 'rake'
