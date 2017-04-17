@@ -57,7 +57,7 @@ You can now access the OmniAuth PayPal OAuth2 URL: `/auth/paypal_oauth2`
 
 If you click from your [Applications Dashboard](https://developer.paypal.com/developer/applications/) in your Application on "Advanced Options" in the "APP SETTINGS" section and "Log In with PayPal" subsection, you can configure several options:
 
-* `Basic authentication`: The unique identifier PPID (PayPal ID) is provided. No additional customer information. **Not customizale**.
+* `Basic authentication`: The unique identifier PPID (PayPal ID) is provided. No additional customer information. **Not customizable**.
 
 * `Personal Information`:
     * `Full name`: Permits the Name of the customer.
@@ -225,5 +225,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-<i>Original PayPal Omniauth Strategy: Copyright (c) 2011 by veloGraf Systems</i>
