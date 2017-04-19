@@ -3,7 +3,7 @@ require File.expand_path(File.join('..', 'lib', 'omniauth', 'paypal_oauth2', 've
 
 Gem::Specification.new do |gem|
     gem.name          = 'omniauth-paypal-oauth2'
-    gem.version       = OmniAuth::PayPalOauth2::VERSION
+    gem.version       = OmniAuth::PaypalOauth2::VERSION
     gem.license       = 'MIT'
     gem.summary       = %q{A PayPal OAuth2 strategy for OmniAuth 1.x}
     gem.description   = %q{A PayPal OAuth2 strategy for OmniAuth 1.x}

@@ -1,9 +1,9 @@
 require 'spec_helper'
 require 'omniauth-paypal-oauth2'
 
-describe OmniAuth::Strategies::PayPalOauth2 do
+describe OmniAuth::Strategies::PaypalOauth2 do
     subject do
-        OmniAuth::Strategies::PayPalOauth2.new(nil, @options || {})
+        OmniAuth::Strategies::PaypalOauth2.new(nil, @options || {})
     end
 
     it_should_behave_like 'an oauth2 strategy'
