@@ -5,7 +5,7 @@ Strategy to authenticate with PayPal via OmniAuth.
 Get your API key at: https://developer.paypal.com/developer/applications/ in the section **RESTApps**. Note the Client ID and the Client Secret.
 
 **Note**: You generate separate keys for development (sandbox) and production (live) with each application you register.
-Use the [config Gem](https://rubygems.org/gems/config) to organize your keys and keep them save.
+Use the [config Gem](https://rubygems.org/gems/config) to organize your keys and keep them safe.
 
 For more details, read the PayPal docs: https://developer.paypal.com/docs/integration/direct/identity/
 
