@@ -5,8 +5,8 @@ Gem::Specification.new do |gem|
     gem.name          = 'omniauth-paypal-oauth2'
     gem.version       = OmniAuth::PaypalOauth2::VERSION
     gem.license       = 'MIT'
-    gem.summary       = 'A PayPal OAuth2 strategy for OmniAuth 1.x'
-    gem.description   = 'A PayPal OAuth2 strategy for OmniAuth 1.x'
+    gem.summary       = 'A PayPal OAuth2 strategy for OmniAuth'
+    gem.description   = 'A PayPal OAuth2 strategy for OmniAuth'
     gem.authors       = ['Jonas Hübotter']
     gem.email         = ['jonas@slooob.com']
     gem.homepage      = 'https://github.com/jonhue/omniauth-paypal-oauth2'
