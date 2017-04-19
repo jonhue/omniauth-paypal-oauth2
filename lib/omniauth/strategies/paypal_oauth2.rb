@@ -3,25 +3,25 @@ require 'omniauth-oauth2'
 module OmniAuth
     module Strategies
         class PaypalOauth2 < OmniAuth::Strategies::OAuth2
-            DEFAULT_SCOPE = "email,profile"
-            DEFAULT_RESPONSE_TYPE = "code"
-            SANDBOX_SITE = "https://api.sandbox.paypal.com"
+            DEFAULT_SCOPE = 'email,profile'
+            DEFAULT_RESPONSE_TYPE = 'code'
+            SANDBOX_SITE = 'https://api.sandbox.paypal.com'
             SANDBOX_AUTHORIZE_URL = 'https://www.sandbox.paypal.com/signin/authorize'
 
-            option :name, "paypal_oauth2"
+            option :name, 'paypal_oauth2'
 
             option :client_options, {
-                :site          => 'https://api.paypal.com',
-                :authorize_url => 'https://www.paypal.com/signin/authorize',
-                :token_url     => '/v1/identity/openidconnect/tokenservice',
-                :setup         => true
+                site:          'https://api.paypal.com',
+                authorize_url: 'https://www.paypal.com/signin/authorize',
+                token_url:     '/v1/identity/openidconnect/tokenservice',
+                setup:         true
             }
 
             option :authorize_options, [:scope, :response_type]
             option :provider_ignores_state, true
             option :sandbox, false
 
-            uid { @parsed_uid ||= (/\/([^\/]+)\z/.match raw_info['user_id'])[1] } #https://www.paypal.com/webapps/auth/identity/user/baCNqjGvIxzlbvDCSsfhN3IrQDtQtsVr79AwAjMxekw => baCNqjGvIxzlbvDCSsfhN3IrQDtQtsVr79AwAjMxekw
+            uid { @parsed_uid ||= (%r{\/([^\/]+)\z}.match raw_info['user_id'])[1] } # https://www.paypal.com/webapps/auth/identity/user/baCNqjGvIxzlbvDCSsfhN3IrQDtQtsVr79AwAjMxekw => baCNqjGvIxzlbvDCSsfhN3IrQDtQtsVr79AwAjMxekw
 
             info do
                 prune!({
@@ -64,7 +64,7 @@ module OmniAuth
             end
 
             def raw_info
-                @raw_info ||= load_identity()
+                @raw_info ||= load_identity
             end
 
             def authorize_params
@@ -80,7 +80,7 @@ module OmniAuth
                 access_token.options[:mode] = :query
                 access_token.options[:param_name] = :access_token
                 access_token.options[:grant_type] = :authorization_code
-                access_token.get('/v1/identity/openidconnect/userinfo', { :params => { :schema => 'openid'}}).parsed || {}
+                access_token.get('/v1/identity/openidconnect/userinfo', { params: { schema: 'openid' } }).parsed || {}
             end
 
             def prune!(hash)
@@ -89,7 +89,6 @@ module OmniAuth
                     value.nil? || (value.respond_to?(:empty?) && value.empty?)
                 end
             end
-
         end
     end
 end

@@ -1,7 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 gemspec
-
 
 # Development
 group :development do

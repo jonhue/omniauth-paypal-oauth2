@@ -14,7 +14,7 @@ describe OmniAuth::Strategies::PaypalOauth2 do
         end
 
         it 'has correct PayPal sandbox site' do
-            @options = { :sandbox => true }
+            @options = { sandbox: true }
             subject.setup_phase
             expect(subject.client.site).to eq('https://api.sandbox.paypal.com')
         end
@@ -24,7 +24,7 @@ describe OmniAuth::Strategies::PaypalOauth2 do
         end
 
         it 'has correct sandbox authorize url' do
-            @options = { :sandbox => true }
+            @options = { sandbox: true }
             subject.setup_phase
             expect(subject.client.options[:authorize_url]).to eq('https://www.sandbox.paypal.com/webapps/auth/protocol/openidconnect/v1/authorize')
         end
@@ -35,14 +35,14 @@ describe OmniAuth::Strategies::PaypalOauth2 do
 
         it 'runs the setup block if passed one' do
             counter = ''
-            @options = { :setup => Proc.new { |env| counter = 'ok' } }
+            @options = { setup: proc { counter = 'ok' } }
             subject.setup_phase
-            expect(counter).to eq("ok")
+            expect(counter).to eq('ok')
         end
     end
 
     describe '#callback_path' do
-        it "has the correct callback path" do
+        it 'has the correct callback path' do
             expect(subject.callback_path).to eq('/auth/paypal_oauth2/callback')
         end
     end
