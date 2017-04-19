@@ -134,11 +134,9 @@ For more details see the PayPal [List Of Attributes](https://developer.paypal.co
 
 First define your application id and secret in `config/initializers/devise.rb`. Do not use the snippet mentioned in the [Usage](https://github.com/jonhue/omniauth-paypal-oauth2#usage) section.
 
-Configuration options can be passed as the last parameter here as key/value pairs.
-
 ```ruby
 require "omniauth-paypal-oauth2"
-config.omniauth :paypal_oauth2, "PAYPAL_CLIENT_ID", "PAYPAL_CLIENT_SECRET", { }
+config.omniauth :paypal_oauth2, "PAYPAL_CLIENT_ID", "PAYPAL_CLIENT_SECRET"
 ```
 
 Then add the following to 'config/routes.rb' so the callback routes are defined.
