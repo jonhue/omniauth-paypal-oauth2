@@ -1,5 +1,7 @@
 # OmniAuth PayPal OAuth2 Strategy
 
+[![Gem Version](https://badge.fury.io/rb/omniauth-paypal-oauth2.svg)](https://badge.fury.io/rb/omniauth-paypal-oauth2) <img src="https://travis-ci.org/jonhue/omniauth-paypal-oauth2.svg?branch=master" />
+
 Strategy to authenticate with PayPal via OmniAuth.
 
 Get your API key at: https://developer.paypal.com/developer/applications/ in the section **RESTApps**. Note the Client ID and the Client Secret.
