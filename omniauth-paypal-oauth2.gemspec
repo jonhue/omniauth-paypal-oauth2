@@ -7,9 +7,9 @@ Gem::Specification.new do |gem|
     gem.license       = 'MIT'
     gem.summary       = 'A PayPal OAuth2 strategy for OmniAuth'
     gem.description   = 'A PayPal OAuth2 strategy for OmniAuth'
-    gem.authors       = 'Slooob'
-    gem.email         = ['developer@slooob.com']
-    gem.homepage      = 'https://developer.slooob.com/open-source'
+    gem.authors       = ['Jonas Hübotter']
+    gem.email         = ['jonas.huebotter@gmail.com']
+    gem.homepage      = 'https://github.com/jonhue/omniauth-paypal-oauth2'
 
     gem.files         = `git ls-files`.split("\n")
     gem.require_paths = ['lib']

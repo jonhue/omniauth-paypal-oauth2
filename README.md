@@ -9,6 +9,24 @@ Use the [config Gem](https://rubygems.org/gems/config) to organize your keys and
 
 For more details, read the PayPal docs: https://developer.paypal.com/docs/integration/direct/identity/
 
+---
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+    * [PayPal API Setup](#paypal-api-setup)
+    * [Rails middleware](#rails-middleware)
+    * [Devise](#Devise)
+    * [Configuration](#configuration)
+    * [Auth hash](#auth-hash)
+* [To Do](#to-do)
+* [Contributing](#contributing)
+    * [Contributors](#contributors)
+    * [Semantic versioning](#semantic-versioning)
+* [License](#license)
+
+---
 
 ## Installation
 
@@ -26,8 +44,11 @@ Or install it yourself as:
 
     $ gem install omniauth-paypal-oauth2
 
+---
 
-## PayPal API Setup
+## Usage
+
+### PayPal API Setup
 
 * Go to 'https://developer.paypal.com/developer/applications/'
 * Select your project.
@@ -37,8 +58,7 @@ Or install it yourself as:
 * Go to Credentials, then select the "OAuth consent screen" tab on top, and provide an 'EMAIL ADDRESS' and a 'PRODUCT NAME'
 * Wait 10 minutes for changes to take effect.
 
-
-## Usage
+### Rails middleware
 
 Here's an example for adding the middleware to a Rails app in `config/initializers/omniauth.rb`:
 
@@ -51,84 +71,6 @@ end
 You can now access the OmniAuth PayPal OAuth2 URL: `/auth/paypal_oauth2`
 
 **Note**: While developing your application, if you change the scope in the initializer you will need to restart your app server. Remember that either the 'email' or 'profile' scope is required!
-
-
-## Configuration
-
-If you click from your [Applications Dashboard](https://developer.paypal.com/developer/applications/) in your Application on "Advanced Options" in the "APP SETTINGS" section and "Log In with PayPal" subsection, you can configure several options:
-
-* `Basic authentication`: The unique identifier PPID (PayPal ID) is provided. No additional customer information. **Not customizable**.
-
-* `Personal Information`:
-    * `Full name`: Permits the Name of the customer.
-    * `Date of birth`: Permits the date of birth of the customer.
-    * `Age range`: Permits an approximate age range of the customer.
-
-* `Address Information`:
-    * `Email address`: Permits the email address of the customer.
-    * `Street address`: Permits the street address of the customer (Street name, House number).
-    * `City`: Permits the city name where the customer resides.
-    * `State`: Permits the state in which the city is located.
-    * `Country`: Permits the country in which both state and city are located.
-    * `Zip code`: Permits the Zip code of the customer.
-    * `Phone`: Permits the phone number of the customer.
-
-* `Account Information`:
-    * `Account status (verified)`: Permits a boolean which indicates whether the customer is verified by PayPal or not.
-    * `Account type`: Permits a string which indicates the account type of the PayPal customer (e.g.: PERSONAL, BUSINESS).
-    * `Account creation date`: Permits the date on which the PayPal account got created.
-    * `Time zone`: Permits the time zone in which the PayPal customer is located.
-    * `Locale`: Permits a locale string which indicates where the PayPal customer is.
-    * `Language`: Permits the language the customer uses on PayPal.
-
-
-## Auth Hash
-
-Here's an example of an authentication hash available in the callback by accessing `request.env["omniauth.auth"]`:
-
-```ruby
-{
-    provider: "paypal",
-    uid: "bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw",
-    info: {
-        name: "John Smith",
-        email: "example@example.com",
-        first_name: "John",
-        last_name: "Smith",
-        given_name: "John",
-        family_name: "Smith",
-        location: "Moscow",
-        phone: "71234567890"
-    },
-    credentials: {
-        token: "token",
-        refresh_token: "refresh_token",
-        expires_at: 1355082790,
-        expires: true
-    },
-    extra: {
-        account_creation_date: "2008-04-21",
-        account_type: "PERSONAL",
-        user_id: "https://www.paypal.com/webapps/auth/identity/user/bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw",
-        address: {
-            country: "US",
-            locality: "San Jose",
-            postal_code: "95131",
-            region: "CA",
-            street_address: "1 Main St"
-        },
-        language: "en_US",
-        locale: "en_US",
-        verified_account: true,
-        zoneinfo: "America/Los_Angeles",
-        age_range: "31-35",
-        birthday: "1982-01-01"
-    }
-}
-```
-
-For more details see the PayPal [List Of Attributes](https://developer.paypal.com/webapps/developer/docs/integration/direct/log-in-with-paypal/detailed/#attributes).
-
 
 ### Devise
 
@@ -199,6 +141,106 @@ For your views you can login using:
 
 An overview is available at https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
 
+### Configuration
+
+If you click from your [Applications Dashboard](https://developer.paypal.com/developer/applications/) in your Application on "Advanced Options" in the "APP SETTINGS" section and "Log In with PayPal" subsection, you can configure several options:
+
+* `Basic authentication`: The unique identifier PPID (PayPal ID) is provided. No additional customer information. **Not customizable**.
+
+* `Personal Information`:
+    * `Full name`: Permits the Name of the customer.
+    * `Date of birth`: Permits the date of birth of the customer.
+    * `Age range`: Permits an approximate age range of the customer.
+
+* `Address Information`:
+    * `Email address`: Permits the email address of the customer.
+    * `Street address`: Permits the street address of the customer (Street name, House number).
+    * `City`: Permits the city name where the customer resides.
+    * `State`: Permits the state in which the city is located.
+    * `Country`: Permits the country in which both state and city are located.
+    * `Zip code`: Permits the Zip code of the customer.
+    * `Phone`: Permits the phone number of the customer.
+
+* `Account Information`:
+    * `Account status (verified)`: Permits a boolean which indicates whether the customer is verified by PayPal or not.
+    * `Account type`: Permits a string which indicates the account type of the PayPal customer (e.g.: PERSONAL, BUSINESS).
+    * `Account creation date`: Permits the date on which the PayPal account got created.
+    * `Time zone`: Permits the time zone in which the PayPal customer is located.
+    * `Locale`: Permits a locale string which indicates where the PayPal customer is.
+    * `Language`: Permits the language the customer uses on PayPal.
+
+### Auth Hash
+
+Here's an example of an authentication hash available in the callback by accessing `request.env["omniauth.auth"]`:
+
+```ruby
+{
+    provider: "paypal",
+    uid: "bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw",
+    info: {
+        name: "John Smith",
+        email: "example@example.com",
+        first_name: "John",
+        last_name: "Smith",
+        given_name: "John",
+        family_name: "Smith",
+        location: "Moscow",
+        phone: "71234567890"
+    },
+    credentials: {
+        token: "token",
+        refresh_token: "refresh_token",
+        expires_at: 1355082790,
+        expires: true
+    },
+    extra: {
+        account_creation_date: "2008-04-21",
+        account_type: "PERSONAL",
+        user_id: "https://www.paypal.com/webapps/auth/identity/user/bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw",
+        address: {
+            country: "US",
+            locality: "San Jose",
+            postal_code: "95131",
+            region: "CA",
+            street_address: "1 Main St"
+        },
+        language: "en_US",
+        locale: "en_US",
+        verified_account: true,
+        zoneinfo: "America/Los_Angeles",
+        age_range: "31-35",
+        birthday: "1982-01-01"
+    }
+}
+```
+
+For more details see the PayPal [List Of Attributes](https://developer.paypal.com/webapps/developer/docs/integration/direct/log-in-with-paypal/detailed/#attributes).
+
+---
+
+## To Do
+
+[Here](https://github.com/jonhue/omniauth-paypal-oauth2/projects/1) is the full list of current projects.
+
+To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/omniauth-paypal-oauth2/issues/new).
+
+---
+
+## Contributing
+
+We hope that you will consider contributing to omniauth-paypal-oauth2. Please read this short overview for some information about how to get started:
+
+[Learn more about contributing to this repository](https://github.com/jonhue/omniauth-paypal-oauth2/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/omniauth-paypal-oauth2/blob/master/CODE_OF_CONDUCT.md)
+
+### Contributors
+
+Give the people some :heart: who are working on this project. See them all at:
+
+https://github.com/jonhue/omniauth-paypal-oauth2/graphs/contributors
+
+### Semantic Versioning
+
+omniauth-paypal-oauth2 follows Semantic Versioning 2.0 as defined at http://semver.org.
 
 ## License
 
