@@ -4,5 +4,5 @@ gemspec
 
 # Development
 group :development do
-    gem 'rubocop', '~> 0.47.1', require: false
+    gem 'rubocop', '~> 0.52', require: false
 end
