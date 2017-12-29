@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
     gem.email         = ['jonas.huebotter@gmail.com']
     gem.homepage      = 'https://github.com/jonhue/omniauth-paypal-oauth2'
 
-    gem.files         = `git ls-files`.split("\n")
+    gem.files         = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*']
     gem.require_paths = ['lib']
 
     gem.required_ruby_version = '>= 2.0'
