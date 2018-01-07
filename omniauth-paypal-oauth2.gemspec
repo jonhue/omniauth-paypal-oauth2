@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
     gem.summary       = 'A PayPal OAuth2 strategy for OmniAuth'
     gem.description   = 'A PayPal OAuth2 strategy for OmniAuth'
     gem.authors       = ['Jonas Hübotter']
-    gem.email         = ['jonas.huebotter@gmail.com']
+    gem.email         = ['me@jonhue.me']
     gem.homepage      = 'https://github.com/jonhue/omniauth-paypal-oauth2'
 
     gem.files         = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*']
