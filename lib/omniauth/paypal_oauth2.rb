@@ -1,1 +1,1 @@
-require File.join('omniauth', 'strategies', 'paypal_oauth2')
+require "omniauth/strategies/paypal_oauth2"
