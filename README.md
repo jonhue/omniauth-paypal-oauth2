@@ -1,6 +1,6 @@
 # OmniAuth PayPal OAuth2 Strategy
 
-[![Gem Version](https://badge.fury.io/rb/omniauth-paypal-oauth2.svg)](https://badge.fury.io/rb/omniauth-paypal-oauth2) <img src="https://travis-ci.org/jonhue/omniauth-paypal-oauth2.svg?branch=master" />
+[![Gem Version](https://badge.fury.io/rb/omniauth-paypal-oauth2.svg)](https://badge.fury.io/rb/omniauth-paypal-oauth2) ![Travis](https://travis-ci.org/jonhue/omniauth-paypal-oauth2.svg?branch=master)
 
 Strategy to authenticate with PayPal via OmniAuth.
 
@@ -17,16 +17,15 @@ For more details, read the PayPal docs: https://developer.paypal.com/docs/integr
 
 * [Installation](#installation)
 * [Usage](#usage)
-    * [PayPal API Setup](#paypal-api-setup)
-    * [Rails middleware](#rails-middleware)
-    * [Devise](#Devise)
-    * [Configuration](#configuration)
-    * [Auth hash](#auth-hash)
+  * [PayPal API Setup](#paypal-api-setup)
+  * [Rails middleware](#rails-middleware)
+  * [Devise](#Devise)
+  * [Configuration](#configuration)
+  * [Auth hash](#auth-hash)
+* [Testing](#testing)
 * [To Do](#to-do)
 * [Contributing](#contributing)
-    * [Contributors](#contributors)
-    * [Semantic versioning](#semantic-versioning)
-* [License](#license)
+  * [Semantic versioning](#semantic-versioning)
 
 ---
 
@@ -35,7 +34,7 @@ For more details, read the PayPal docs: https://developer.paypal.com/docs/integr
 Add to your `Gemfile`:
 
 ```ruby
-gem "omniauth-paypal-oauth2"
+gem 'omniauth-paypal-oauth2'
 ```
 
 And then execute:
@@ -45,6 +44,12 @@ And then execute:
 Or install it yourself as:
 
     $ gem install omniauth-paypal-oauth2
+
+If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
+
+```ruby
+gem 'omniauth-paypal-oauth2', github: 'jonhue/omniauth-paypal-oauth2'
+```
 
 ---
 
@@ -66,7 +71,7 @@ Here's an example for adding the middleware to a Rails app in `config/initialize
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-    provider :paypal_oauth2, ENV["PAYPAL_CLIENT_ID"], ENV["PAYPAL_CLIENT_SECRET"]
+  provider :paypal_oauth2, ENV['PAYPAL_CLIENT_ID'], ENV['PAYPAL_CLIENT_SECRET']
 end
 ```
 
@@ -79,17 +84,17 @@ You can now access the OmniAuth PayPal OAuth2 URL: `/auth/paypal_oauth2`
 First define your application id and secret in `config/initializers/devise.rb`. Do not use the snippet mentioned in the [Usage](https://github.com/jonhue/omniauth-paypal-oauth2#usage) section.
 
 ```ruby
-require "omniauth-paypal-oauth2"
-config.omniauth :paypal_oauth2, "PAYPAL_CLIENT_ID", "PAYPAL_CLIENT_SECRET"
+require 'omniauth-paypal-oauth2'
+config.omniauth :paypal_oauth2, 'PAYPAL_CLIENT_ID', 'PAYPAL_CLIENT_SECRET'
 ```
 
 Then add the following to 'config/routes.rb' so the callback routes are defined.
 
 ```ruby
-devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
 ```
 
-Make sure your model is omniauthable. Generally this is "/app/models/user.rb"
+Make sure your model is omniauthable. Generally this is `'/app/models/user.rb'`
 
 ```ruby
 devise :omniauthable, :omniauth_providers => [:paypal_oauth2]
@@ -100,16 +105,16 @@ Then make sure your callbacks controller is setup.
 ```ruby
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def paypal_oauth2
-      # You need to implement the method below in your model (e.g. app/models/user.rb)
-      @user = User.from_omniauth(request.env["omniauth.auth"])
+    # You need to implement the method below in your model (e.g. app/models/user.rb)
+    @user = User.from_omniauth(request.env['omniauth.auth'])
 
-      if @user.persisted?
-        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "PayPal"
-        sign_in_and_redirect @user, :event => :authentication
-      else
-        session["devise.paypal_data"] = request.env["omniauth.auth"]
-        redirect_to new_user_registration_url
-      end
+    if @user.persisted?
+      flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', :kind => 'PayPal'
+      sign_in_and_redirect @user, :event => :authentication
+    else
+      session['devise.paypal_data'] = request.env['omniauth.auth']
+      redirect_to new_user_registration_url
+    end
   end
 end
 ```
@@ -118,27 +123,27 @@ and bind to or create the user
 
 ```ruby
 def self.from_omniauth(access_token)
-    data = access_token.info
-    user = User.where(:email => data["email"]).first
+  data = access_token.info
+  user = User.where(:email => data['email']).first
 
-    # Uncomment the section below if you want users to be created if they don't exist
-    # unless user
-    #     user = User.create(name: data["name"],
-    #        email: data["email"],
-    #        password: Devise.friendly_token[0,20]
-    #     )
-    # end
-    user
+  # Uncomment the section below if you want users to be created if they don't exist
+  # unless user
+  #   user = User.create(name: data['name'],
+  #      email: data['email'],
+  #      password: Devise.friendly_token[0,20]
+  #   )
+  # end
+  user
 end
 ```
 
 For your views you can login using:
 
 ```erb
-<%= link_to "Sign in with PayPal", user_paypal_oauth2_omniauth_authorize_path %>
+<%= link_to 'Sign in with PayPal', user_paypal_oauth2_omniauth_authorize_path %>
 
 <%# Devise prior 4.1.0: %>
-<%= link_to "Sign in with PayPal", user_omniauth_authorize_path(:paypal_oauth2) %>
+<%= link_to 'Sign in with PayPal', user_omniauth_authorize_path(:paypal_oauth2) %>
 ```
 
 An overview is available at https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
@@ -173,45 +178,45 @@ If you click from your [Applications Dashboard](https://developer.paypal.com/dev
 
 ### Auth Hash
 
-Here's an example of an authentication hash available in the callback by accessing `request.env["omniauth.auth"]`:
+Here's an example of an authentication hash available in the callback by accessing `request.env['omniauth.auth']`:
 
 ```ruby
 {
-    provider: "paypal",
-    uid: "bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw",
+    provider: 'paypal',
+    uid: 'bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw',
     info: {
-        name: "John Smith",
-        email: "example@example.com",
-        first_name: "John",
-        last_name: "Smith",
-        given_name: "John",
-        family_name: "Smith",
-        location: "Moscow",
-        phone: "71234567890"
+        name: 'John Smith',
+        email: 'example@example.com',
+        first_name: 'John',
+        last_name: 'Smith',
+        given_name: 'John',
+        family_name: 'Smith',
+        location: 'Moscow',
+        phone: '71234567890'
     },
     credentials: {
-        token: "token",
-        refresh_token: "refresh_token",
+        token: 'token',
+        refresh_token: 'refresh_token',
         expires_at: 1355082790,
         expires: true
     },
     extra: {
-        account_creation_date: "2008-04-21",
-        account_type: "PERSONAL",
-        user_id: "https://www.paypal.com/webapps/auth/identity/user/bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw",
+        account_creation_date: '2008-04-21',
+        account_type: 'PERSONAL',
+        user_id: 'https://www.paypal.com/webapps/auth/identity/user/bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw',
         address: {
-            country: "US",
-            locality: "San Jose",
-            postal_code: "95131",
-            region: "CA",
-            street_address: "1 Main St"
+            country: 'US',
+            locality: 'San Jose',
+            postal_code: '95131',
+            region: 'CA',
+            street_address: '1 Main St'
         },
-        language: "en_US",
-        locale: "en_US",
+        language: 'en_US',
+        locale: 'en_US',
         verified_account: true,
-        zoneinfo: "America/Los_Angeles",
-        age_range: "31-35",
-        birthday: "1982-01-01"
+        zoneinfo: 'America/Los_Angeles',
+        age_range: '31-35',
+        birthday: '1982-01-01'
     }
 }
 ```
@@ -220,9 +225,27 @@ For more details see the PayPal [List Of Attributes](https://developer.paypal.co
 
 ---
 
+## Testing
+
+1. Fork this repository
+2. Clone your forked git locally
+3. Install dependencies
+
+    `$ bundle install`
+
+4. Run specs
+
+    `$ bundle exec rspec`
+
+5. Run RuboCop
+
+    `$ bundle exec rubocop`
+
+---
+
 ## To Do
 
-[Here](https://github.com/jonhue/omniauth-paypal-oauth2/projects/1) is the full list of current projects.
+We use [GitHub projects](https://github.com/jonhue/omniauth-paypal-oauth2/projects/1) to coordinate the work on this project.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/omniauth-paypal-oauth2/issues/new).
 
@@ -230,40 +253,10 @@ To propose your ideas, initiate the discussion by adding a [new issue](https://g
 
 ## Contributing
 
-We hope that you will consider contributing to omniauth-paypal-oauth2. Please read this short overview for some information about how to get started:
+We hope that you will consider contributing to OmniAuth PayPal OAuth2 Strategy. Please read this short overview for some information about how to get started:
 
 [Learn more about contributing to this repository](https://github.com/jonhue/omniauth-paypal-oauth2/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/omniauth-paypal-oauth2/blob/master/CODE_OF_CONDUCT.md)
-
-### Contributors
-
-Give the people some :heart: who are working on this project. See them all at:
-
-https://github.com/jonhue/omniauth-paypal-oauth2/graphs/contributors
 
 ### Semantic Versioning
 
 omniauth-paypal-oauth2 follows Semantic Versioning 2.0 as defined at http://semver.org.
-
-## License
-
-MIT License
-
-Copyright (c) 2017 Jonas Hübotter
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
