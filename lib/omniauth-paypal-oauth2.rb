@@ -1,1 +1,3 @@
-require "omniauth/paypal_oauth2"
+# frozen_string_literal: true
+
+require 'omniauth/paypal_oauth2'
