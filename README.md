@@ -91,13 +91,13 @@ config.omniauth :paypal_oauth2, 'PAYPAL_CLIENT_ID', 'PAYPAL_CLIENT_SECRET'
 Then add the following to 'config/routes.rb' so the callback routes are defined.
 
 ```ruby
-devise_for :users, :controllers => { :omniauth_callbacks => 'users/omniauth_callbacks' }
+devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 ```
 
 Make sure your model is omniauthable. Generally this is `'/app/models/user.rb'`
 
 ```ruby
-devise :omniauthable, :omniauth_providers => [:paypal_oauth2]
+devise :omniauthable, omniauth_providers: [:paypal_oauth2]
 ```
 
 Then make sure your callbacks controller is setup.
@@ -109,8 +109,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env['omniauth.auth'])
 
     if @user.persisted?
-      flash[:notice] = I18n.t 'devise.omniauth_callbacks.success', :kind => 'PayPal'
-      sign_in_and_redirect @user, :event => :authentication
+      flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: 'PayPal')
+      sign_in_and_redirect(@user, event: :authentication)
     else
       session['devise.paypal_data'] = request.env['omniauth.auth']
       redirect_to new_user_registration_url
@@ -124,7 +124,7 @@ and bind to or create the user
 ```ruby
 def self.from_omniauth(access_token)
   data = access_token.info
-  user = User.where(:email => data['email']).first
+  user = User.where(email: data['email']).first
 
   # Uncomment the section below if you want users to be created if they don't exist
   # unless user
@@ -182,42 +182,42 @@ Here's an example of an authentication hash available in the callback by accessi
 
 ```ruby
 {
-    provider: 'paypal',
-    uid: 'bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw',
-    info: {
-        name: 'John Smith',
-        email: 'example@example.com',
-        first_name: 'John',
-        last_name: 'Smith',
-        given_name: 'John',
-        family_name: 'Smith',
-        location: 'Moscow',
-        phone: '71234567890'
+  provider: 'paypal',
+  uid: 'bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw',
+  info: {
+    name: 'John Smith',
+    email: 'example@example.com',
+    first_name: 'John',
+    last_name: 'Smith',
+    given_name: 'John',
+    family_name: 'Smith',
+    location: 'Moscow',
+    phone: '71234567890'
+  },
+  credentials: {
+    token: 'token',
+    refresh_token: 'refresh_token',
+    expires_at: 1355082790,
+    expires: true
+  },
+  extra: {
+    account_creation_date: '2008-04-21',
+    account_type: 'PERSONAL',
+    user_id: 'https://www.paypal.com/webapps/auth/identity/user/bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw',
+    address: {
+      country: 'US',
+      locality: 'San Jose',
+      postal_code: '95131',
+      region: 'CA',
+      street_address: '1 Main St'
     },
-    credentials: {
-        token: 'token',
-        refresh_token: 'refresh_token',
-        expires_at: 1355082790,
-        expires: true
-    },
-    extra: {
-        account_creation_date: '2008-04-21',
-        account_type: 'PERSONAL',
-        user_id: 'https://www.paypal.com/webapps/auth/identity/user/bathjJwvdhKjgfgh8Jd745J7dh5Qkgflbnczd65dfnw',
-        address: {
-            country: 'US',
-            locality: 'San Jose',
-            postal_code: '95131',
-            region: 'CA',
-            street_address: '1 Main St'
-        },
-        language: 'en_US',
-        locale: 'en_US',
-        verified_account: true,
-        zoneinfo: 'America/Los_Angeles',
-        age_range: '31-35',
-        birthday: '1982-01-01'
-    }
+    language: 'en_US',
+    locale: 'en_US',
+    verified_account: true,
+    zoneinfo: 'America/Los_Angeles',
+    age_range: '31-35',
+    birthday: '1982-01-01'
+  }
 }
 ```
 
