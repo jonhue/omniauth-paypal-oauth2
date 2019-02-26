@@ -156,8 +156,6 @@ If you click from your [Applications Dashboard](https://developer.paypal.com/dev
 
 * `Personal Information`:
     * `Full name`: Permits the Name of the customer.
-    * `Date of birth`: Permits the date of birth of the customer.
-    * `Age range`: Permits an approximate age range of the customer.
 
 * `Address Information`:
     * `Email address`: Permits the email address of the customer.
@@ -166,15 +164,9 @@ If you click from your [Applications Dashboard](https://developer.paypal.com/dev
     * `State`: Permits the state in which the city is located.
     * `Country`: Permits the country in which both state and city are located.
     * `Zip code`: Permits the Zip code of the customer.
-    * `Phone`: Permits the phone number of the customer.
 
 * `Account Information`:
     * `Account status (verified)`: Permits a boolean which indicates whether the customer is verified by PayPal or not.
-    * `Account type`: Permits a string which indicates the account type of the PayPal customer (e.g.: PERSONAL, BUSINESS).
-    * `Account creation date`: Permits the date on which the PayPal account got created.
-    * `Time zone`: Permits the time zone in which the PayPal customer is located.
-    * `Locale`: Permits a locale string which indicates where the PayPal customer is.
-    * `Language`: Permits the language the customer uses on PayPal.
 
 ### Auth Hash
 
@@ -187,12 +179,7 @@ Here's an example of an authentication hash available in the callback by accessi
   info: {
     name: 'John Smith',
     email: 'example@example.com',
-    first_name: 'John',
-    last_name: 'Smith',
-    given_name: 'John',
-    family_name: 'Smith',
-    location: 'Moscow',
-    phone: '71234567890'
+    location: 'Moscow'
   },
   credentials: {
     token: 'token',
@@ -214,14 +201,12 @@ Here's an example of an authentication hash available in the callback by accessi
     language: 'en_US',
     locale: 'en_US',
     verified_account: true,
-    zoneinfo: 'America/Los_Angeles',
-    age_range: '31-35',
-    birthday: '1982-01-01'
+    zoneinfo: 'America/Los_Angeles'
   }
 }
 ```
 
-For more details see the PayPal [List Of Attributes](https://developer.paypal.com/webapps/developer/docs/integration/direct/log-in-with-paypal/detailed/#attributes).
+For more details see the PayPal [List Of Attributes](https://developer.paypal.com/docs/api/identity/v1/#userinfo).
 
 ---
 
