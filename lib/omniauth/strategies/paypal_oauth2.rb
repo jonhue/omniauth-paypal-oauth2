@@ -30,13 +30,10 @@ module OmniAuth
       info do
         prune!(
           'name' => raw_info['name'],
-          'email' => raw_info['email'],
-          'first_name' => raw_info['given_name'],
-          'last_name' => raw_info['family_name'],
-          'given_name' => raw_info['given_name'],
-          'family_name' => raw_info['family_name'],
-          'location' => (raw_info['address'] || {})['locality'],
-          'phone' => raw_info['phone_number']
+          'email' => (raw_info['emails'].detect do |email|
+            email['primary']
+          end || {})['value'],
+          'location' => (raw_info['address'] || {})['locality']
         )
       end
 
@@ -49,9 +46,7 @@ module OmniAuth
           'language' => raw_info['language'],
           'zoneinfo' => raw_info['zoneinfo'],
           'locale' => raw_info['locale'],
-          'account_creation_date' => raw_info['account_creation_date'],
-          'age_range' => raw_info['age_range'],
-          'birthday' => raw_info['birthday']
+          'account_creation_date' => raw_info['account_creation_date']
         )
       end
 
@@ -81,11 +76,11 @@ module OmniAuth
       private
 
       def load_identity
-        access_token.options[:mode] = :query
+        access_token.options[:mode] = :header
         access_token.options[:param_name] = :access_token
         access_token.options[:grant_type] = :authorization_code
         access_token.get(
-          '/v1/identity/openidconnect/userinfo', params: { schema: 'openid' }
+          '/v1/identity/oauth2/userinfo', params: { schema: 'paypalv1.1' }
         ).parsed || {}
       end
 
