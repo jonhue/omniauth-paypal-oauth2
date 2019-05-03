@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omniauth-paypal-oauth2 (2.0.0)
+    omniauth-paypal-oauth2 (2.0.1)
       json (~> 2.1)
       omniauth-oauth2 (~> 1.5)
 
@@ -34,7 +34,7 @@ GEM
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    rack (2.0.6)
+    rack (2.0.7)
     rainbow (3.0.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
@@ -71,4 +71,4 @@ DEPENDENCIES
   rubocop-rspec
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
