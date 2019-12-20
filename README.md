@@ -1,7 +1,5 @@
 # OmniAuth PayPal OAuth2 Strategy
 
-[![Gem Version](https://badge.fury.io/rb/omniauth-paypal-oauth2.svg)](https://badge.fury.io/rb/omniauth-paypal-oauth2) ![Travis](https://travis-ci.org/jonhue/omniauth-paypal-oauth2.svg?branch=master)
-
 Strategy to authenticate with PayPal via OmniAuth.
 
 Get your API key at: https://developer.paypal.com/developer/applications/ in the section **RESTApps**. Note the Client ID and the Client Secret.
@@ -23,6 +21,7 @@ For more details, read the PayPal docs: https://developer.paypal.com/docs/integr
   * [Configuration](#configuration)
   * [Auth hash](#auth-hash)
 * [Testing](#testing)
+* [Release](#release)
 * [To Do](#to-do)
 * [Contributing](#contributing)
   * [Semantic versioning](#semantic-versioning)
@@ -225,6 +224,17 @@ For more details see the PayPal [List Of Attributes](https://developer.paypal.co
 5. Run RuboCop
 
     `$ bundle exec rubocop`
+
+---
+
+## Release
+
+1. Review breaking changes and deprecations in `CHANGELOG.md`
+2. Change the gem version in `lib/omniauth/paypal_oauth2/version.rb`
+3. Reset `CHANGELOG.md`
+4. Create a pull request to merge the changes into `master`
+5. After the pull request was merged, create a new release listing the breaking changes and commits on `master` since the last release.
+6. The release workflow will publish the gems to RubyGems and the GitHub Package Registry
 
 ---
 
