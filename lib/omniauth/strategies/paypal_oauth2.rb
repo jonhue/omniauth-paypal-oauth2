@@ -25,12 +25,12 @@ module OmniAuth
       # https://www.paypal.com/webapps/auth/identity/user/
       #   baCNqjGvIxzlbvDCSsfhN3IrQDtQtsVr79AwAjMxekw =>
       #   baCNqjGvIxzlbvDCSsfhN3IrQDtQtsVr79AwAjMxekw
-      uid { @parsed_uid ||= (%r{\/([^\/]+)\z}.match raw_info['user_id'])[1] }
+      uid { @parsed_uid ||= ((%r{\/([^\/]+)\z}.match raw_info['user_id']) || [])[1] }
 
       info do
         prune!(
           'name' => raw_info['name'],
-          'email' => (raw_info['emails'].detect do |email|
+          'email' => ((raw_info['emails'] || {}).detect do |email|
             email['primary']
           end || {})['value'],
           'location' => (raw_info['address'] || {})['locality']
