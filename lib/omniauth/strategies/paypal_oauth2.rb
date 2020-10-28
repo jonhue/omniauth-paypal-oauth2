@@ -30,7 +30,7 @@ module OmniAuth
       info do
         prune!(
           'name' => raw_info['name'],
-          'email' => ((raw_info['emails'] || {}).detect do |email|
+          'email' => ((raw_info['emails'] || []).detect do |email|
             email['primary']
           end || {})['value'],
           'location' => (raw_info['address'] || {})['locality']
