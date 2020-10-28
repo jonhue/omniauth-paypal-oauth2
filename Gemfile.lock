@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omniauth-paypal-oauth2 (2.0.2)
+    omniauth-paypal-oauth2 (2.0.3)
       json (>= 1.7, < 3)
       omniauth-oauth2 (~> 1.5)
 
