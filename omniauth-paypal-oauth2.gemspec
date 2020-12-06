@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path(
-  File.join('..', 'lib', 'omniauth', 'paypal_oauth2', 'version'),
-  __FILE__
-)
+require File.expand_path(File.join('..', 'lib', 'omniauth', 'paypal_oauth2', 'version'), __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name                  = 'omniauth-paypal-oauth2'
